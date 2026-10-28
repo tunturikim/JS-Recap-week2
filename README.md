@@ -26,6 +26,10 @@ A starter template for plain JavaScript projects (HTML + JS in the browser) with
 ```bash
    npm install
 ```
+or
+```bash
+   npm.cmd install
+```
  
 4. Open the folder in VS Code and start coding.
 Run `npm install` once after every fresh clone. You do not need to run it every time you open the project.
