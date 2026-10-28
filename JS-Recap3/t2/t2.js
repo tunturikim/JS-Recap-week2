@@ -26,5 +26,21 @@ const todoList = [
     completed: false,
   },
 ];
+const list = document.querySelector('ul');
 
-// add your code here
+for (const todo of todoList) {
+  const li = document.createElement('li');
+  const checkbox = document.createElement('input');
+  const label = document.createElement('label');
+
+  checkbox.type = 'checkbox';
+  checkbox.id = `todo-${todo.id}`;
+  checkbox.checked = todo.completed;
+
+  label.htmlFor = `todo-${todo.id}`;
+  label.textContent = todo.task;
+
+  li.appendChild(checkbox);
+  li.appendChild(label);
+  list.appendChild(li);
+}
