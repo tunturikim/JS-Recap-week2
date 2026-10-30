@@ -772,18 +772,26 @@ const restaurants = [
 
 // your code here
 const tableElem = document.querySelector('table');
+// sort the restaurants array by name in ascending order
+restaurants.sort((a, b) => a.name.localeCompare(b.name));
 
 // get ref to dialog element
 const dialog = document.querySelector('dialog');
-dialog.addEventListener('click', (event) => {
+
+dialog.addEventListener('click', () => {
   dialog.close();
+});
+
+dialog.addEventListener('close', () => {
+  const highlightedRow = document.querySelector('.highlight');
+  highlightedRow?.classList.remove('highlight');
 });
 
 for (const restaurant of restaurants) {
   const tableRow = document.createElement('tr');
   const nameCell = document.createElement('td');
   const addressCell = document.createElement('td');
-  
+
   // add content to the cells
   nameCell.textContent = restaurant.name;
   addressCell.textContent = restaurant.address;
@@ -792,13 +800,30 @@ for (const restaurant of restaurants) {
   tableRow.appendChild(addressCell);
   tableElem.appendChild(tableRow);
 
-  tableRow.addEventListener('click', (event) => {
+  tableRow.addEventListener('click', () => {
+    const highlightedRow = document.querySelector('.highlight');
+    highlightedRow?.classList.remove('highlight');
+    tableRow.classList.add('highlight');
     dialog.innerHTML = ''; // Clear previous content
     const title = document.createElement('h2');
-    const details = document.createElement('p');
+    const details = document.createElement('div');
+
+    const detailsList = [
+      `Address: ${restaurant.address}`,
+      `Postal Code: ${restaurant.postalCode}`,
+      `City: ${restaurant.city}`,
+      restaurant.phone !== '-'
+        ? `Phone: ${restaurant.phone}`
+        : 'Phone: Not available',
+      `Company: ${restaurant.company}`,
+    ];
 
     title.textContent = restaurant.name;
-    details.textContent = `${restaurant.address}, ${restaurant.postalCode} ${restaurant.city}, ${restaurant.phone}`;
+    for (const detail of detailsList) {
+      const detailElem = document.createElement('div');
+      detailElem.textContent = detail;
+      details.appendChild(detailElem);
+    }
 
     dialog.appendChild(title);
     dialog.appendChild(details);
@@ -806,12 +831,12 @@ for (const restaurant of restaurants) {
   });
 }
 
- /* Alternative solution using forEach method
+/* Alternative solution using forEach method
 restaurants.forEach((restaurant) => {
   const tableRow = document.createElement('tr');
   const nameCell = document.createElement('td');
   const addressCell = document.createElement('td');
-  
+
   nameCell.textContent = restaurant.name;
   addressCell.textContent = restaurant.address;
 
