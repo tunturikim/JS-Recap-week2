@@ -771,3 +771,61 @@ const restaurants = [
 ];
 
 // your code here
+const table = document.querySelector('table');
+
+function distanceCalculator(lat1, lon1, lat2, lon2) {
+  return Math.sqrt(Math.pow(lat2 - lat1, 2) + Math.pow(lon2 - lon1, 2));
+}
+
+function sortRestaurantsByDistance(restaurants, userLocation) {
+  return restaurants.sort(
+    (a, b) =>
+      distanceCalculator(
+        userLocation.lat,
+        userLocation.lon,
+        a.location.coordinates[1],
+        a.location.coordinates[0]
+      ) -
+      distanceCalculator(
+        userLocation.lat,
+        userLocation.lon,
+        b.location.coordinates[1],
+        b.location.coordinates[0]
+      )
+  );
+}
+
+function createTable(userLocation) {
+  const sortedRestaurants = sortRestaurantsByDistance(
+    restaurants,
+    userLocation
+  );
+  for (const restaurant of sortedRestaurants) {
+    const row = document.createElement('tr');
+    const nameCell = document.createElement('td');
+    const addressCell = document.createElement('td');
+    nameCell.textContent = restaurant.name;
+    addressCell.textContent = restaurant.address;
+    row.appendChild(nameCell);
+    row.appendChild(addressCell);
+    table.appendChild(row);
+  }
+}
+
+const fallbackLocation = {lat: 60.1989, lon: 24.9335}; // Pasila, if no location is found
+
+navigator.geolocation.getCurrentPosition(
+  (position) => {
+    const userLocation = {
+      lat: position.coords.latitude,
+      lon: position.coords.longitude,
+    };
+    console.log('Location found:', userLocation);
+    createTable(userLocation);
+  },
+  (error) => {
+    console.error('Location error:', error.message);
+    createTable(fallbackLocation);
+  },
+  {timeout: 5000}
+);
