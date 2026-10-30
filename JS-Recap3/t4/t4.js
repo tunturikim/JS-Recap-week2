@@ -812,7 +812,7 @@ function createTable(userLocation) {
   }
 }
 
-const fallbackLocation = {lat: 60.1989, lon: 24.9335}; // Pasila, if no location is found
+const fallbackLocation = {lat: 60.20516036278808, lon: 24.654048355518242}; // Espoo, if no location is found
 
 navigator.geolocation.getCurrentPosition(
   (position) => {
