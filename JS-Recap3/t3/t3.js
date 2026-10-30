@@ -9,6 +9,9 @@ let browserTag = 'Unknown Tag';
 if (useragentdata.includes('Edg/')) {
   browserName = 'Microsoft Edge';
   browserTag = 'Edg/';
+} else if (useragentdata.includes('OPR/')) {
+  browserName = 'Opera';
+  browserTag = 'OPR/';
 } else if (useragentdata.includes('Chrome/')) {
   browserName = 'Chrome';
   browserTag = 'Chrome/';
@@ -26,7 +29,7 @@ console.log(`You are using ${browserName}`);
 
 let version = 'Unknown Version';
 
-if(browserTag) {
+if (browserTag !== 'Unknown Tag') {
   version = useragentdata.split(browserTag)[1].split('.')[0];
 }
 
@@ -77,7 +80,7 @@ const rows = [
   `available screen: ${screenAvailWidth} x ${screenAvailHeight}`,
   `date: ${date}`,
   `time: ${time}`,
-]
+];
 
 const target = document.querySelector('#target');
 
