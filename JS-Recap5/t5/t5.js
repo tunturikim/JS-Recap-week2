@@ -3,8 +3,8 @@
 const API_URL = 'https://media2.edu.metropolia.fi/restaurant/api/v1';
 
 // generic fetch function: throws an error if the response is not ok
-async function fetchData(url, settings) {
-  const response = await fetch(url, settings);
+async function fetchData(url, options) {
+  const response = await fetch(url, options);
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
   }

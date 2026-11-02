@@ -1,5 +1,7 @@
-async function fetchData(url, settings) {
-  const response = await fetch(url, settings);
+'use strict';
+
+async function fetchData(url, options) {
+  const response = await fetch(url, options);
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
   }
@@ -9,10 +11,6 @@ async function fetchData(url, settings) {
 
 async function testFetchData() {
   try {
-    const user = {
-      name: 'John Doe',
-      job: 'Developer',
-    };
     const url = 'https://reqres.in/api/unknown/23';
     const options = {
       method: 'GET',
