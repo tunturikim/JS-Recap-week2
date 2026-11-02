@@ -1,86 +1,49 @@
-# JavaScript Project Template
- 
-A starter template for plain JavaScript projects (HTML + JS in the browser) with formatting and linting preconfigured:
- 
-- **EditorConfig**: consistent indentation, line endings and encoding across editors
-- **Prettier**: automatic code formatting
-- **ESLint**: finds errors and enforces coding conventions
-## Requirements
- 
-- [Node.js](https://nodejs.org/) (LTS version). Check with `node -v`. Node is installed once on your computer, not per project.
-- [Git](https://git-scm.com/)
-- Visual Studio Code with these extensions:
-  - Prettier - Code formatter
-  - ESLint
-  - EditorConfig for VS Code
-## Getting started
- 
-1. Click **Use this template** > **Create a new repository** on GitHub.
-2. Clone your new repository:
-```bash
-   git clone https://github.com/<username>/<repository>.git
-   cd <repository>
-```
- 
-3. Install dependencies (creates the `node_modules` folder, which is not stored in Git):
-```bash
-   npm install
-```
-or
-```bash
-   npm.cmd install
-```
- 
-4. Open the folder in VS Code and start coding.
-Run `npm install` once after every fresh clone. You do not need to run it every time you open the project.
- 
-## VS Code settings
- 
-Open settings with `Ctrl + ,` and check:
- 
-- **Editor: Default Formatter** is set to **Prettier**
-- **Editor: Format On Save** is enabled
-## Project structure
- 
-```
-.
-├── .editorconfig        # Editor style rules
-├── .prettierrc.json     # Prettier configuration
-├── eslint.config.js     # ESLint configuration
-├── .gitignore
-├── package.json         # Project info and dependencies
-├── example.html         # Sample HTML page
-└── main.js              # Sample JavaScript file
-```
- 
-## Usage
- 
-Open `example.html` in a browser (or use the VS Code Live Server extension). JavaScript is loaded as a module:
- 
-```html
-<script type="module" src="main.js" defer></script>
-```
- 
-Output from `console.log()` appears in the browser developer tools console (`F12`).
- 
-For course assignments, put each assignment in its own folder with its own HTML and JS files, and include the assignment number in the file and folder names, for example `assignment1/assignment1.html` and `assignment1/assignment1.js`.
- 
-## Linting
- 
-Run ESLint manually on all files:
- 
-```bash
-npx eslint .
-```
- 
-Automatically fix what can be fixed:
- 
-```bash
-npx eslint . --fix
-```
- 
+# JS Recap 3–5 – DOM, Events and AJAX
+
+JavaScript assignments on the DOM and BOM, event handling and AJAX with the Fetch API. Each assignment has its own folder with an HTML and a JS file.
+
+## Assignments
+
+### Recap 3 – DOM and BOM
+
+| #   | Folder      | Topic                                                    | Points |
+| --- | ----------- | -------------------------------------------------------- | ------ |
+| 1   | `recap3/t1` | Todo list with `insertAdjacentHTML`                      | 4p     |
+| 2   | `recap3/t2` | Todo list with DOM methods (`createElement`, `htmlFor`)  | 4p     |
+| 3   | `recap3/t3` | Browser and device information with the BOM              | 5p     |
+| 4   | `recap3/t4` | Nearest restaurants sorted by distance (Geolocation API) | 5p     |
+| 5   | `recap3/t5` | Restaurant markers on a Leaflet map                      | 4p     |
+
+### Recap 4 – Event handling
+
+| #   | Folder      | Topic                                                                                                | Points |
+| --- | ----------- | ---------------------------------------------------------------------------------------------------- | ------ |
+| 1   | `recap4/t1` | Interactive todo list: checkbox updates the array, delete button, add item with a modal form         | 12p    |
+| 2   | `recap4/t2` | Restaurant list in alphabetical order, row highlight with `classList`, modal with restaurant details | 12p    |
+
+### Recap 5 – AJAX
+
+| #   | Folder      | Topic                                                   | Points |
+| --- | ----------- | ------------------------------------------------------- | ------ |
+| 1   | `recap5/t1` | GET request with Fetch API and `async/await`            | 2p     |
+| 2   | `recap5/t2` | POST request with a JSON body                           | 3p     |
+| 3   | `recap5/t3` | Error handling with `try/catch` and `response.ok`       | 4p     |
+| 4   | `recap5/t4` | Reusable `fetchData` function                           | 5p     |
+| 5   | `recap5/t5` | Restaurant app with daily menus from the Restaurant API | 10p    |
+
+## How to run
+
+1. Open an assignment's HTML file in a browser, e.g. `recap3/t1/t1.html`, or use the VS Code Live Server extension.
+2. Open the developer tools console (F12) to see the `console.log()` output.
+3. The AJAX assignments `recap5/t1`–`t4` only print their results to the console.
+
 ## Notes
- 
-- `node_modules`, `.vscode`, `.idea` and `.DS_Store` are ignored by Git (see `.gitignore`).
-- If ESLint warnings do not show up in the editor, make sure `npm install` has been run in the project folder.
- 
+
+- **Recap 3, task 4:** the browser asks for permission to use your location.
+- **Recap 3, task 5:** Leaflet and the OpenStreetMap tiles are loaded from the internet.
+- **Recap 5, tasks 1–4:** the requests go to the Reqres test API (`https://reqres.in/api/...`) and need the `x-api-key` header.
+- **Recap 5, task 5:** the Restaurant API works only inside the Metropolia network or over a VPN connection. When the app is opened from a public server, the browser may ask for permission to access the local network. Allow it, otherwise the restaurants cannot be loaded and an error message is shown instead.
+
+## Setup
+
+Run `npm install` once after cloning to install ESLint and Prettier. Run `npx eslint .` to lint the files.
